@@ -9,7 +9,6 @@
 
 import { Route, Router, Set } from '@redwoodjs/router'
 import RolesLayout from 'src/layouts/RolesLayout'
-import RolesLayout from 'src/layouts/RolesLayout'
 import UsersLayout from 'src/layouts/UsersLayout'
 import WorkoutDaysLayout from 'src/layouts/WorkoutDaysLayout'
 import HomePage from 'src/pages/HomePage'

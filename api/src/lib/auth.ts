@@ -1,7 +1,5 @@
-import { AuthenticationError, ForbiddenError, parseJWT } from '@redwoodjs/api'
+import { AuthenticationError, ForbiddenError } from '@redwoodjs/api'
 import { db } from 'src/lib/db'
-
-import { roles } from '../services/roles/roles'
 
 /**
  * getCurrentUser returns the user information together with
@@ -72,6 +70,10 @@ export const hasRole = ({ roles }) => {
   return true
 }
 
+interface rolesInput {
+  roles?: string[] | string
+}
+
 /**
  * Use requireAuth in your services to check that a user is logged in,
  * whether or not they are assigned a role, and optionally raise an
@@ -86,14 +88,20 @@ export const hasRole = ({ roles }) => {
  *
  * @see https://github.com/redwoodjs/redwood/tree/main/packages/auth for examples
  */
-export const requireAuth = ({ roles } = {}) => {
+export const requireAuth = (
+  { roles }: rolesInput = {}
+  // ownsResource = false
+): void => {
   if (!isAuthenticated()) {
     throw new AuthenticationError("You don't have permission to do that.")
   }
-
-  console.log('🦕 roles', roles)
 
   if (!hasRole({ roles })) {
     throw new ForbiddenError("You don't have access to do that.")
   }
 }
+
+/**
+ * Use ownsResource to validate that the current user
+ */
+export const ownsResource = () => {}

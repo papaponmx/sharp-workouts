@@ -1,18 +1,19 @@
 import type { Prisma } from '@prisma/client'
-import type { BeforeResolverSpecType, ResolverArgs } from '@redwoodjs/api'
+import type { ResolverArgs } from '@redwoodjs/api'
 import { requireAuth } from 'src/lib/auth'
 import { db } from 'src/lib/db'
 
 // Used when the environment variable REDWOOD_SECURE_SERVICES=1
-export const beforeResolver = (rules: BeforeResolverSpecType) => {
-  rules.add(requireAuth)
-}
+export const beforeResolver = () => {}
 
 export const users = () => {
+  requireAuth({ roles: 'admin' })
   return db.user.findMany()
 }
 
 export const user = ({ id }: Prisma.UserWhereUniqueInput) => {
+  requireAuth({ roles: ['admin', 'customer'] })
+
   return db.user.findUnique({
     where: { id },
   })
@@ -40,6 +41,7 @@ export const updateUser = ({ id, input }: UpdateUserArgs) => {
 }
 
 export const deleteUser = ({ id }: Prisma.UserWhereUniqueInput) => {
+  requireAuth()
   return db.user.delete({
     where: { id },
   })

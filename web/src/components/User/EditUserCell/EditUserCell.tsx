@@ -1,9 +1,11 @@
-import { navigate, routes } from '@redwoodjs/router'
-import type { CellFailureProps, CellSuccessProps } from '@redwoodjs/web'
+import type { EditUserById } from 'types/graphql'
+
+import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
+import { navigate, routes } from '@redwoodjs/router'
+
 import UserForm from 'src/components/User/UserForm'
-import type { EditUserById } from 'types/graphql'
 
 export const QUERY = gql`
   query EditUserById($id: String!) {
