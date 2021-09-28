@@ -1,8 +1,8 @@
 import { MetaTags } from '@redwoodjs/web'
-import { LoginForm } from '$src/components'
+
+import LoginForm from '../../components/LoginForm'
 
 const LoginPage = () => {
-
   return (
     <>
       <MetaTags
