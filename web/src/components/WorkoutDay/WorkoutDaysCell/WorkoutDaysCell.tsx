@@ -9,7 +9,8 @@ export const QUERY = gql`
   query FindWorkoutDays {
     workoutDays {
       id
-      workoutHistoryId
+      didWorkout
+      userId
     }
   }
 `

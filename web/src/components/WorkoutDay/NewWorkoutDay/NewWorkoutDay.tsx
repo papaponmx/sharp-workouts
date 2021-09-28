@@ -20,8 +20,7 @@ const NewWorkoutDay = () => {
   })
 
   const onSave = (input) => {
-    const castInput = Object.assign(input, { workoutHistoryId: parseInt(input.workoutHistoryId), })
-    createWorkoutDay({ variables: { input: castInput } })
+    createWorkoutDay({ variables: { input } })
   }
 
   return (

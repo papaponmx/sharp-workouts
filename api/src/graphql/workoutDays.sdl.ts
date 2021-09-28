@@ -1,8 +1,9 @@
 export const schema = gql`
   type WorkoutDay {
     id: String!
-    WorkoutHistory: WorkoutHistory
-    workoutHistoryId: String
+    didWorkout: Boolean!
+    user: User!
+    userId: String!
   }
 
   type Query {
@@ -11,11 +12,13 @@ export const schema = gql`
   }
 
   input CreateWorkoutDayInput {
-    workoutHistoryId: String
+    didWorkout: Boolean!
+    userId: String!
   }
 
   input UpdateWorkoutDayInput {
-    workoutHistoryId: String
+    didWorkout: Boolean
+    userId: String
   }
 
   type Mutation {

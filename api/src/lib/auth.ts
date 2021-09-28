@@ -91,6 +91,8 @@ export const requireAuth = ({ roles } = {}) => {
     throw new AuthenticationError("You don't have permission to do that.")
   }
 
+  console.log('🦕 roles', roles)
+
   if (!hasRole({ roles })) {
     throw new ForbiddenError("You don't have access to do that.")
   }

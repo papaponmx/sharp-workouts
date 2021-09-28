@@ -47,8 +47,6 @@ export const deleteWorkoutDay = ({ id }: Prisma.WorkoutDayWhereUniqueInput) => {
 }
 
 export const WorkoutDay = {
-  WorkoutHistory: (
-    _obj,
-    { root }: ResolverArgs<ReturnType<typeof workoutDay>>
-  ) => db.workoutDay.findUnique({ where: { id: root.id } }).WorkoutHistory(),
+  user: (_obj, { root }: ResolverArgs<ReturnType<typeof workoutDay>>) =>
+    db.workoutDay.findUnique({ where: { id: root.id } }).user(),
 }

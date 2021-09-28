@@ -7,11 +7,10 @@
 // 'src/pages/HomePage/HomePage.js'         -> HomePage
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
-import { Private, Route, Router, Set } from '@redwoodjs/router'
+import { Route, Router, Set } from '@redwoodjs/router'
 import RolesLayout from 'src/layouts/RolesLayout'
 import UsersLayout from 'src/layouts/UsersLayout'
 import WorkoutDaysLayout from 'src/layouts/WorkoutDaysLayout'
-import WorkoutHistoriesLayout from 'src/layouts/WorkoutHistoriesLayout'
 import HomePage from 'src/pages/HomePage'
 
 const Routes = () => {
@@ -39,12 +38,6 @@ const Routes = () => {
         <Route path="/workout-days/{id:Int}/edit" page={WorkoutDayEditWorkoutDayPage} name="editWorkoutDay" />
         <Route path="/workout-days/{id:Int}" page={WorkoutDayWorkoutDayPage} name="workoutDay" />
         <Route path="/workout-days" page={WorkoutDayWorkoutDaysPage} name="workoutDays" />
-      </Set>
-      <Set role="customer" private unauthenticated="login" wrap={WorkoutHistoriesLayout}>
-        <Route path="/workout-histories/new" page={WorkoutHistoryNewWorkoutHistoryPage} name="newWorkoutHistory" />
-        <Route path="/workout-histories/{id:Int}/edit" page={WorkoutHistoryEditWorkoutHistoryPage} name="editWorkoutHistory" />
-        <Route path="/workout-histories/{id:Int}" page={WorkoutHistoryWorkoutHistoryPage} name="workoutHistory" />
-        <Route path="/workout-histories" page={WorkoutHistoryWorkoutHistoriesPage} name="workoutHistories" />
       </Set>
     </Router>
   )

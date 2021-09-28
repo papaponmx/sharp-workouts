@@ -23,6 +23,25 @@ describe('workoutDays', () => {
     }
   )
 
+  scenario('creates a workoutDay', async (scenario: StandardScenario) => {
+    const result = await createWorkoutDay({
+      input: { didWorkout: true, userId: scenario.workoutDay.two.userId },
+    })
+
+    expect(result.didWorkout).toEqual(true)
+    expect(result.userId).toEqual(scenario.workoutDay.two.userId)
+  })
+
+  scenario('updates a workoutDay', async (scenario: StandardScenario) => {
+    const original = await workoutDay({ id: scenario.workoutDay.one.id })
+    const result = await updateWorkoutDay({
+      id: original.id,
+      input: { didWorkout: false },
+    })
+
+    expect(result.didWorkout).toEqual(false)
+  })
+
   scenario('deletes a workoutDay', async (scenario: StandardScenario) => {
     const original = await deleteWorkoutDay({ id: scenario.workoutDay.one.id })
     const result = await workoutDay({ id: original.id })

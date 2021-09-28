@@ -3,7 +3,8 @@ import {
   FormError,
   FieldError,
   Label,
-  NumberField,
+  CheckboxField,
+  TextField,
   Submit,
 } from '@redwoodjs/forms'
 
@@ -29,20 +30,35 @@ const WorkoutDayForm = (props) => {
         />
 
         <Label
-          name="workoutHistoryId"
+          name="didWorkout"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Workout history id
+          Did workout
         </Label>
-        <NumberField
-          name="workoutHistoryId"
-          defaultValue={props.workoutDay?.workoutHistoryId}
+        <CheckboxField
+          name="didWorkout"
+          defaultChecked={props.workoutDay?.didWorkout}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+        <FieldError name="didWorkout" className="rw-field-error" />
+
+        <Label
+          name="userId"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          User id
+        </Label>
+        <TextField
+          name="userId"
+          defaultValue={props.workoutDay?.userId}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
-        <FieldError name="workoutHistoryId" className="rw-field-error" />
+        <FieldError name="userId" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit

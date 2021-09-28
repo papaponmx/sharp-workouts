@@ -1,6 +1,7 @@
-import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
+import { Link, routes } from '@redwoodjs/router'
+
 import { QUERY } from 'src/components/WorkoutDay/WorkoutDaysCell'
 
 const DELETE_WORKOUT_DAY_MUTATION = gql`
@@ -61,7 +62,8 @@ const WorkoutDaysList = ({ workoutDays }) => {
         <thead>
           <tr>
             <th>Id</th>
-            <th>Workout history id</th>
+            <th>Did workout</th>
+            <th>User id</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -69,7 +71,8 @@ const WorkoutDaysList = ({ workoutDays }) => {
           {workoutDays.map((workoutDay) => (
             <tr key={workoutDay.id}>
               <td>{truncate(workoutDay.id)}</td>
-              <td>{truncate(workoutDay.workoutHistoryId)}</td>
+              <td>{checkboxInputTag(workoutDay.didWorkout)}</td>
+              <td>{truncate(workoutDay.userId)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link
