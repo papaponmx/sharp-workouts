@@ -63,6 +63,8 @@ const RolesList = ({ roles }) => {
           <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Created at</th>
+            <th>Updated at</th>
             <th>User id</th>
             <th>&nbsp;</th>
           </tr>
@@ -72,6 +74,8 @@ const RolesList = ({ roles }) => {
             <tr key={role.id}>
               <td>{truncate(role.id)}</td>
               <td>{truncate(role.name)}</td>
+              <td>{timeTag(role.createdAt)}</td>
+              <td>{timeTag(role.updatedAt)}</td>
               <td>{truncate(role.userId)}</td>
               <td>
                 <nav className="rw-table-actions">

@@ -59,6 +59,12 @@ const Role = ({ role }) => {
               <th>Name</th>
               <td>{role.name}</td>
             </tr><tr>
+              <th>Created at</th>
+              <td>{timeTag(role.createdAt)}</td>
+            </tr><tr>
+              <th>Updated at</th>
+              <td>{timeTag(role.updatedAt)}</td>
+            </tr><tr>
               <th>User id</th>
               <td>{role.userId}</td>
             </tr>

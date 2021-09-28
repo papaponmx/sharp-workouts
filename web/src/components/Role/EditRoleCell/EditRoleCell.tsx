@@ -12,6 +12,8 @@ export const QUERY = gql`
     role: role(id: $id) {
       id
       name
+      createdAt
+      updatedAt
       userId
     }
   }
@@ -21,6 +23,8 @@ const UPDATE_ROLE_MUTATION = gql`
     updateRole(id: $id, input: $input) {
       id
       name
+      createdAt
+      updatedAt
       userId
     }
   }

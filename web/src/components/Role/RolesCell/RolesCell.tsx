@@ -10,6 +10,8 @@ export const QUERY = gql`
     roles {
       id
       name
+      createdAt
+      updatedAt
       userId
     }
   }

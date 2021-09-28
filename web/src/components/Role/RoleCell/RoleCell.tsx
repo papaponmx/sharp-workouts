@@ -8,6 +8,8 @@ export const QUERY = gql`
     role: role(id: $id) {
       id
       name
+      createdAt
+      updatedAt
       userId
     }
   }
