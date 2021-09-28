@@ -18,10 +18,12 @@ model User {
 }
 
 model Role {
-  id     String @id @unique @default(uuid())
-  name   String
-  userId String
-  User   User   @relation("UserRoles", fields: [userId], references: [id])
+  id        String   @id @unique @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  User      User     @relation("UserRoles", fields: [userId], references: [id])
+  userId    String
 }
 
 model WorkoutDay {
