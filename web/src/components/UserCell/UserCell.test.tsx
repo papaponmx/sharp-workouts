@@ -1,5 +1,6 @@
-import { render, screen } from '@redwoodjs/testing/web'
-import { Loading, Empty, Failure, Success } from './UserCell'
+import { render } from '@redwoodjs/testing/web'
+
+import { Empty, Failure, Loading, Success } from './UserCell'
 import { standard } from './UserCell.mock'
 
 describe('UserCell', () => {

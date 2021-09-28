@@ -9,7 +9,7 @@ export const beforeResolver = (rules: BeforeResolverSpecType) => {
 }
 
 export const workoutHistories = () => {
-  requireAuth()
+  requireAuth({ roles: { name: 'customer' } })
 
   return db.workoutHistory.findMany()
 }
@@ -17,7 +17,7 @@ export const workoutHistories = () => {
 export const workoutHistory = ({
   id,
 }: Prisma.WorkoutHistoryWhereUniqueInput) => {
-  requireAuth()
+  requireAuth({ roles: { name: 'customer' } })
   return db.workoutHistory.findUnique({
     where: { id },
   })
@@ -28,7 +28,7 @@ interface CreateWorkoutHistoryArgs {
 }
 
 export const createWorkoutHistory = ({ input }: CreateWorkoutHistoryArgs) => {
-  requireAuth()
+  requireAuth({ roles: { name: 'customer' } })
   return db.workoutHistory.create({
     data: input,
   })
@@ -43,7 +43,7 @@ export const updateWorkoutHistory = ({
   id,
   input,
 }: UpdateWorkoutHistoryArgs) => {
-  requireAuth()
+  requireAuth({ roles: { name: 'customer' } })
   return db.workoutHistory.update({
     data: input,
     where: { id },
@@ -53,7 +53,7 @@ export const updateWorkoutHistory = ({
 export const deleteWorkoutHistory = ({
   id,
 }: Prisma.WorkoutHistoryWhereUniqueInput) => {
-  requireAuth()
+  requireAuth({ roles: { name: 'customer' } })
   return db.workoutHistory.delete({
     where: { id },
   })

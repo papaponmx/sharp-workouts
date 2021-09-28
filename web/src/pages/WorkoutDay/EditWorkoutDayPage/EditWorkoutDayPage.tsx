@@ -1,7 +1,7 @@
 import EditWorkoutDayCell from 'src/components/WorkoutDay/EditWorkoutDayCell'
 
 type WorkoutDayPageProps = {
-  id: Int
+  id: string
 }
 
 const EditWorkoutDayPage = ({ id }: WorkoutDayPageProps) => {

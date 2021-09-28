@@ -1,7 +1,7 @@
 import RoleCell from 'src/components/Role/RoleCell'
 
 type RolePageProps = {
-  id: String
+  id: string
 }
 
 const RolePage = ({ id }: RolePageProps) => {

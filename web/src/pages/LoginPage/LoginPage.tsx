@@ -8,9 +8,7 @@ const LoginPage = () => {
   const { isAuthenticated, currentUser } = useAuth()
 
   const getOrRegister = async () => {
-    const currentUser = await fetch('/api/')
-
-    console.log('🤓', currentUser)
+    // const currentUser = await fetch('/api/')
   }
 
   useEffect(() => {

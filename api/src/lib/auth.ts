@@ -1,4 +1,7 @@
 import { AuthenticationError, ForbiddenError, parseJWT } from '@redwoodjs/api'
+import { db } from 'src/lib/db'
+
+import { roles } from '../services/roles/roles'
 
 /**
  * getCurrentUser returns the user information together with
@@ -17,7 +20,18 @@ export const getCurrentUser = async (
   { _token, _type },
   { _event, _context }
 ) => {
-  return { ...decoded, roles: parseJWT({ decoded }).roles }
+  const email = decoded.emailAddresses[0].emailAddress
+  const dbUser = await db.user.findUnique({
+    where: { email: email },
+  })
+  const dbRoles = await db.role.findMany({
+    where: { userId: dbUser.id },
+  })
+
+  return {
+    ...decoded,
+    roles: Array.isArray(dbRoles) ? dbRoles.map((role) => role.name) : [],
+  }
 }
 
 /**

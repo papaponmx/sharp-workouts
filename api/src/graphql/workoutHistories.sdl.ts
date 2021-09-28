@@ -16,7 +16,7 @@ export const schema = gql`
   }
 
   input UpdateWorkoutHistoryInput {
-    userId: Int
+    userId: String
   }
 
   type Mutation {

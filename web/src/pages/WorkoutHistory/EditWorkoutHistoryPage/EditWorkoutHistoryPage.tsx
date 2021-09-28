@@ -1,7 +1,7 @@
 import EditWorkoutHistoryCell from 'src/components/WorkoutHistory/EditWorkoutHistoryCell'
 
 type WorkoutHistoryPageProps = {
-  id: Int
+  id: string
 }
 
 const EditWorkoutHistoryPage = ({ id }: WorkoutHistoryPageProps) => {
