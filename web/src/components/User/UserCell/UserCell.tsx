@@ -1,6 +1,7 @@
-import type { CellFailureProps, CellSuccessProps } from '@redwoodjs/web'
-import User from 'src/components/User/User'
 import type { FindUserById } from 'types/graphql'
+import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+
+import User from 'src/components/User/User'
 
 export const QUERY = gql`
   query FindUserById($id: String!) {

@@ -1,7 +1,7 @@
 import EditUserCell from 'src/components/User/EditUserCell'
 
 type UserPageProps = {
-  id: string
+  id: String
 }
 
 const EditUserPage = ({ id }: UserPageProps) => {

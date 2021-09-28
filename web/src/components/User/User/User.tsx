@@ -1,6 +1,6 @@
-import { Link, navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
+import { Link, routes, navigate } from '@redwoodjs/router'
 
 const DELETE_USER_MUTATION = gql`
   mutation DeleteUserMutation($id: String!) {
@@ -48,25 +48,20 @@ const User = ({ user }) => {
     <>
       <div className="rw-segment">
         <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">
-            User {user.id} Detail
-          </h2>
+          <h2 className="rw-heading rw-heading-secondary">User {user.id} Detail</h2>
         </header>
         <table className="rw-table">
           <tbody>
             <tr>
               <th>Id</th>
               <td>{user.id}</td>
-            </tr>
-            <tr>
+            </tr><tr>
               <th>Email</th>
               <td>{user.email}</td>
-            </tr>
-            <tr>
+            </tr><tr>
               <th>Name</th>
               <td>{user.name}</td>
-            </tr>
-            <tr>
+            </tr><tr>
               <th>Register date</th>
               <td>{timeTag(user.registerDate)}</td>
             </tr>
