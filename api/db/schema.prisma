@@ -29,3 +29,10 @@ model WorkoutDay {
   WorkoutHistory   WorkoutHistory? @relation("WorkoutDays", fields: [workoutHistoryId], references: [id])
   workoutHistoryId Int?
 }
+
+model RW_DataMigration {
+  version    String   @id
+  name       String
+  startedAt  DateTime
+  finishedAt DateTime
+}

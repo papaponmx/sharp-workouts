@@ -1,14 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `UserExample` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropTable
-PRAGMA foreign_keys=off;
-DROP TABLE "UserExample";
-PRAGMA foreign_keys=on;
-
 -- CreateTable
 CREATE TABLE "User" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -22,6 +11,21 @@ CREATE TABLE "WorkoutHistory" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "userId" INTEGER NOT NULL,
     FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "WorkoutDay" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "workoutHistoryId" INTEGER,
+    FOREIGN KEY ("workoutHistoryId") REFERENCES "WorkoutHistory" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "RW_DataMigration" (
+    "version" TEXT NOT NULL PRIMARY KEY,
+    "name" TEXT NOT NULL,
+    "startedAt" DATETIME NOT NULL,
+    "finishedAt" DATETIME NOT NULL
 );
 
 -- CreateIndex
