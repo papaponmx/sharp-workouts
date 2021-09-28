@@ -1,5 +1,5 @@
 export const QUERY = gql`
-  query FindWorkoutDayQuery($id: Int!) {
+  query FindWorkoutDayQuery($id: String!) {
     workoutDay: workoutDay(id: $id) {
       id
     }

@@ -1,14 +1,12 @@
-import type { EditWorkoutHistoryById } from 'types/graphql'
-
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+import { navigate, routes } from '@redwoodjs/router'
+import type { CellFailureProps, CellSuccessProps } from '@redwoodjs/web'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-import { navigate, routes } from '@redwoodjs/router'
-
 import WorkoutHistoryForm from 'src/components/WorkoutHistory/WorkoutHistoryForm'
+import type { EditWorkoutHistoryById } from 'types/graphql'
 
 export const QUERY = gql`
-  query EditWorkoutHistoryById($id: Int!) {
+  query EditWorkoutHistoryById($id: String!) {
     workoutHistory: workoutHistory(id: $id) {
       id
       userId
@@ -16,7 +14,7 @@ export const QUERY = gql`
   }
 `
 const UPDATE_WORKOUT_HISTORY_MUTATION = gql`
-  mutation UpdateWorkoutHistoryMutation($id: Int!, $input: UpdateWorkoutHistoryInput!) {
+  mutation UpdateWorkoutHistoryMutation($id: String!, $input: UpdateWorkoutHistoryInput!) {
     updateWorkoutHistory(id: $id, input: $input) {
       id
       userId

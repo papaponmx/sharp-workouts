@@ -1,11 +1,10 @@
+import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-import { Link, routes } from '@redwoodjs/router'
-
 import { QUERY } from 'src/components/WorkoutDay/WorkoutDaysCell'
 
 const DELETE_WORKOUT_DAY_MUTATION = gql`
-  mutation DeleteWorkoutDayMutation($id: Int!) {
+  mutation DeleteWorkoutDayMutation($id: String!) {
     deleteWorkoutDay(id: $id) {
       id
     }

@@ -1,8 +1,7 @@
 import type { Prisma } from '@prisma/client'
-import type { ResolverArgs, BeforeResolverSpecType } from '@redwoodjs/api'
-
-import { db } from 'src/lib/db'
+import type { BeforeResolverSpecType, ResolverArgs } from '@redwoodjs/api'
 import { requireAuth } from 'src/lib/auth'
+import { db } from 'src/lib/db'
 
 // Used when the environment variable REDWOOD_SECURE_SERVICES=1
 export const beforeResolver = (rules: BeforeResolverSpecType) => {
@@ -10,12 +9,15 @@ export const beforeResolver = (rules: BeforeResolverSpecType) => {
 }
 
 export const workoutHistories = () => {
+  requireAuth()
+
   return db.workoutHistory.findMany()
 }
 
 export const workoutHistory = ({
   id,
 }: Prisma.WorkoutHistoryWhereUniqueInput) => {
+  requireAuth()
   return db.workoutHistory.findUnique({
     where: { id },
   })
@@ -26,6 +28,7 @@ interface CreateWorkoutHistoryArgs {
 }
 
 export const createWorkoutHistory = ({ input }: CreateWorkoutHistoryArgs) => {
+  requireAuth()
   return db.workoutHistory.create({
     data: input,
   })
@@ -40,6 +43,7 @@ export const updateWorkoutHistory = ({
   id,
   input,
 }: UpdateWorkoutHistoryArgs) => {
+  requireAuth()
   return db.workoutHistory.update({
     data: input,
     where: { id },
@@ -49,6 +53,7 @@ export const updateWorkoutHistory = ({
 export const deleteWorkoutHistory = ({
   id,
 }: Prisma.WorkoutHistoryWhereUniqueInput) => {
+  requireAuth()
   return db.workoutHistory.delete({
     where: { id },
   })

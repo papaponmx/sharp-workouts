@@ -1,10 +1,9 @@
-import type { FindWorkoutHistoryById } from 'types/graphql'
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
-
+import type { CellFailureProps, CellSuccessProps } from '@redwoodjs/web'
 import WorkoutHistory from 'src/components/WorkoutHistory/WorkoutHistory'
+import type { FindWorkoutHistoryById } from 'types/graphql'
 
 export const QUERY = gql`
-  query FindWorkoutHistoryById($id: Int!) {
+  query FindWorkoutHistoryById($id: String!) {
     workoutHistory: workoutHistory(id: $id) {
       id
       userId
@@ -20,6 +19,8 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error.message}</div>
 )
 
-export const Success = ({ workoutHistory }: CellSuccessProps<FindWorkoutHistoryById>) => {
+export const Success = ({
+  workoutHistory,
+}: CellSuccessProps<FindWorkoutHistoryById>) => {
   return <WorkoutHistory workoutHistory={workoutHistory} />
 }

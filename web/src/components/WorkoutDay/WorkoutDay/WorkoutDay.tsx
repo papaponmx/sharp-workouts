@@ -1,9 +1,9 @@
+import { Link, navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-import { Link, routes, navigate } from '@redwoodjs/router'
 
 const DELETE_WORKOUT_DAY_MUTATION = gql`
-  mutation DeleteWorkoutDayMutation($id: Int!) {
+  mutation DeleteWorkoutDayMutation($id: String!) {
     deleteWorkoutDay(id: $id) {
       id
     }
@@ -48,14 +48,17 @@ const WorkoutDay = ({ workoutDay }) => {
     <>
       <div className="rw-segment">
         <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">WorkoutDay {workoutDay.id} Detail</h2>
+          <h2 className="rw-heading rw-heading-secondary">
+            WorkoutDay {workoutDay.id} Detail
+          </h2>
         </header>
         <table className="rw-table">
           <tbody>
             <tr>
               <th>Id</th>
               <td>{workoutDay.id}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Workout history id</th>
               <td>{workoutDay.workoutHistoryId}</td>
             </tr>

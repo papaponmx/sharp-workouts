@@ -1,18 +1,18 @@
 export const schema = gql`
   type WorkoutHistory {
-    id: Int!
+    id: String!
     user: User!
-    userId: Int!
+    userId: String!
     workoutDays: [WorkoutDay]!
   }
 
   type Query {
     workoutHistories: [WorkoutHistory!]!
-    workoutHistory(id: Int!): WorkoutHistory
+    workoutHistory(id: String!): WorkoutHistory
   }
 
   input CreateWorkoutHistoryInput {
-    userId: Int!
+    userId: String!
   }
 
   input UpdateWorkoutHistoryInput {
@@ -22,9 +22,9 @@ export const schema = gql`
   type Mutation {
     createWorkoutHistory(input: CreateWorkoutHistoryInput!): WorkoutHistory!
     updateWorkoutHistory(
-      id: Int!
+      id: String!
       input: UpdateWorkoutHistoryInput!
     ): WorkoutHistory!
-    deleteWorkoutHistory(id: Int!): WorkoutHistory!
+    deleteWorkoutHistory(id: String!): WorkoutHistory!
   }
 `

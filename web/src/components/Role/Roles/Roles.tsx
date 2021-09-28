@@ -1,11 +1,12 @@
-import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-import { QUERY } from 'src/components/WorkoutHistory/WorkoutHistoriesCell'
+import { Link, routes } from '@redwoodjs/router'
 
-const DELETE_WORKOUT_HISTORY_MUTATION = gql`
-  mutation DeleteWorkoutHistoryMutation($id: String!) {
-    deleteWorkoutHistory(id: $id) {
+import { QUERY } from 'src/components/Role/RolesCell'
+
+const DELETE_ROLE_MUTATION = gql`
+  mutation DeleteRoleMutation($id: String!) {
+    deleteRole(id: $id) {
       id
     }
   }
@@ -37,10 +38,10 @@ const checkboxInputTag = (checked) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
-const WorkoutHistoriesList = ({ workoutHistories }) => {
-  const [deleteWorkoutHistory] = useMutation(DELETE_WORKOUT_HISTORY_MUTATION, {
+const RolesList = ({ roles }) => {
+  const [deleteRole] = useMutation(DELETE_ROLE_MUTATION, {
     onCompleted: () => {
-      toast.success('WorkoutHistory deleted')
+      toast.success('Role deleted')
     },
     // This refetches the query on the list page. Read more about other ways to
     // update the cache over here:
@@ -50,8 +51,8 @@ const WorkoutHistoriesList = ({ workoutHistories }) => {
   })
 
   const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete workoutHistory ' + id + '?')) {
-      deleteWorkoutHistory({ variables: { id } })
+    if (confirm('Are you sure you want to delete role ' + id + '?')) {
+      deleteRole({ variables: { id } })
     }
   }
 
@@ -61,36 +62,38 @@ const WorkoutHistoriesList = ({ workoutHistories }) => {
         <thead>
           <tr>
             <th>Id</th>
+            <th>Name</th>
             <th>User id</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          {workoutHistories.map((workoutHistory) => (
-            <tr key={workoutHistory.id}>
-              <td>{truncate(workoutHistory.id)}</td>
-              <td>{truncate(workoutHistory.userId)}</td>
+          {roles.map((role) => (
+            <tr key={role.id}>
+              <td>{truncate(role.id)}</td>
+              <td>{truncate(role.name)}</td>
+              <td>{truncate(role.userId)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link
-                    to={routes.workoutHistory({ id: workoutHistory.id })}
-                    title={'Show workoutHistory ' + workoutHistory.id + ' detail'}
+                    to={routes.role({ id: role.id })}
+                    title={'Show role ' + role.id + ' detail'}
                     className="rw-button rw-button-small"
                   >
                     Show
                   </Link>
                   <Link
-                    to={routes.editWorkoutHistory({ id: workoutHistory.id })}
-                    title={'Edit workoutHistory ' + workoutHistory.id}
+                    to={routes.editRole({ id: role.id })}
+                    title={'Edit role ' + role.id}
                     className="rw-button rw-button-small rw-button-blue"
                   >
                     Edit
                   </Link>
                   <button
                     type="button"
-                    title={'Delete workoutHistory ' + workoutHistory.id}
+                    title={'Delete role ' + role.id}
                     className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(workoutHistory.id)}
+                    onClick={() => onDeleteClick(role.id)}
                   >
                     Delete
                   </button>
@@ -104,4 +107,4 @@ const WorkoutHistoriesList = ({ workoutHistories }) => {
   )
 }
 
-export default WorkoutHistoriesList
+export default RolesList
