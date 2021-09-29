@@ -40,6 +40,9 @@ export const Success = ({ user }: CellSuccessProps<EditUserById>) => {
       toast.success('User updated')
       navigate(routes.users())
     },
+    onError: (error) => {
+      toast.error(error.message)
+    },
   })
 
   const onSave = (input, id) => {

@@ -36,6 +36,9 @@ const WorkoutDay = ({ workoutDay }) => {
       toast.success('WorkoutDay deleted')
       navigate(routes.workoutDays())
     },
+    onError: (error) => {
+      toast.error(error.message)
+    },
   })
 
   const onDeleteClick = (id) => {

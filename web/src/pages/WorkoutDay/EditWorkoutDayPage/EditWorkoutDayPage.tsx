@@ -1,10 +1,10 @@
 import EditWorkoutDayCell from 'src/components/WorkoutDay/EditWorkoutDayCell'
 
-type WorkoutDayPageProps = {
-  id: String
+type WorkoutDaysPageProps = {
+  id: string
 }
 
-const EditWorkoutDayPage = ({ id }: WorkoutDayPageProps) => {
+const EditWorkoutDayPage = ({ id }: WorkoutDaysPageProps) => {
   return <EditWorkoutDayCell id={id} />
 }
 

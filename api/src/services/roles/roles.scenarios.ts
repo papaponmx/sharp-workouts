@@ -3,12 +3,16 @@ import type { Prisma } from '@prisma/client'
 export const standard = defineScenario<Prisma.RoleCreateArgs>({
   role: {
     one: {
-      name: 'String',
-      User: { create: { email: 'String5556577', name: 'String' } },
+      data: {
+        name: 'String',
+        User: { create: { email: 'String5901368', name: 'String' } },
+      },
     },
     two: {
-      name: 'String',
-      User: { create: { email: 'String2962260', name: 'String' } },
+      data: {
+        name: 'String',
+        User: { create: { email: 'String8080185', name: 'String' } },
+      },
     },
   },
 })

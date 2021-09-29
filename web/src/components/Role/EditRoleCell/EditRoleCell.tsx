@@ -42,6 +42,9 @@ export const Success = ({ role }: CellSuccessProps<EditRoleById>) => {
       toast.success('Role updated')
       navigate(routes.roles())
     },
+    onError: (error) => {
+      toast.error(error.message)
+    },
   })
 
   const onSave = (input, id) => {

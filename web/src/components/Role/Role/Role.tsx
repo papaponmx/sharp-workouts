@@ -36,6 +36,9 @@ const Role = ({ role }) => {
       toast.success('Role deleted')
       navigate(routes.roles())
     },
+    onError: (error) => {
+      toast.error(error.message)
+    },
   })
 
   const onDeleteClick = (id) => {

@@ -17,6 +17,9 @@ const NewUser = () => {
       toast.success('User created')
       navigate(routes.users())
     },
+    onError: (error) => {
+      toast.error(error.message)
+    },
   })
 
   const onSave = (input) => {

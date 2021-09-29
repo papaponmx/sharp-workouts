@@ -1,7 +1,7 @@
 import EditRoleCell from 'src/components/Role/EditRoleCell'
 
 type RolePageProps = {
-  id: String
+  id: string
 }
 
 const EditRolePage = ({ id }: RolePageProps) => {

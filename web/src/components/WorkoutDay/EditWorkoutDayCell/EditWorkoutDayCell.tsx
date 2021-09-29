@@ -38,6 +38,9 @@ export const Success = ({ workoutDay }: CellSuccessProps<EditWorkoutDayById>) =>
       toast.success('WorkoutDay updated')
       navigate(routes.workoutDays())
     },
+    onError: (error) => {
+      toast.error(error.message)
+    },
   })
 
   const onSave = (input, id) => {

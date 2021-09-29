@@ -17,6 +17,9 @@ const NewWorkoutDay = () => {
       toast.success('WorkoutDay created')
       navigate(routes.workoutDays())
     },
+    onError: (error) => {
+      toast.error(error.message)
+    },
   })
 
   const onSave = (input) => {

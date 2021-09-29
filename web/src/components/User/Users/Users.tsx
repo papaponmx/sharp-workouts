@@ -43,6 +43,9 @@ const UsersList = ({ users }) => {
     onCompleted: () => {
       toast.success('User deleted')
     },
+    onError: (error) => {
+      toast.error(error.message)
+    },
     // This refetches the query on the list page. Read more about other ways to
     // update the cache over here:
     // https://www.apollographql.com/docs/react/data/mutations/#making-all-other-cache-updates

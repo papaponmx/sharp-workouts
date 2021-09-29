@@ -36,6 +36,9 @@ const User = ({ user }) => {
       toast.success('User deleted')
       navigate(routes.users())
     },
+    onError: (error) => {
+      toast.error(error.message)
+    },
   })
 
   const onDeleteClick = (id) => {

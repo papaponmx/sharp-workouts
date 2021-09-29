@@ -1,4 +1,5 @@
-import { AuthenticationError, ForbiddenError } from '@redwoodjs/api'
+import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server'
+import { context } from '@redwoodjs/graphql-server'
 import { db } from 'src/lib/db'
 
 /**
@@ -18,6 +19,10 @@ export const getCurrentUser = async (
   { _token, _type },
   { _event, _context }
 ) => {
+  if (!decoded) {
+    return null
+  }
+
   const email = decoded.emailAddresses[0].emailAddress
   const dbUser = await db.user.findUnique({
     where: { email: email },
@@ -102,6 +107,10 @@ export const requireAuth = (
 }
 
 /**
- * Use ownsResource to validate that the current user
+ * Use verifyOwnership to validate that the current user
  */
-export const ownsResource = () => {}
+export const verifyOwnership = (id: string) => {
+  if (context.currentUser?.id !== id) {
+    throw new ForbiddenError("You don't have access to do that.")
+  }
+}

@@ -9,8 +9,8 @@ export const schema = gql`
   }
 
   type Query {
-    roles: [Role!]!
-    role(id: String!): Role
+    roles: [Role!]! @requireAuth
+    role(id: String!): Role @requireAuth
   }
 
   input CreateRoleInput {
@@ -24,8 +24,8 @@ export const schema = gql`
   }
 
   type Mutation {
-    createRole(input: CreateRoleInput!): Role!
-    updateRole(id: String!, input: UpdateRoleInput!): Role!
-    deleteRole(id: String!): Role!
+    createRole(input: CreateRoleInput!): Role! @requireAuth
+    updateRole(id: String!, input: UpdateRoleInput!): Role! @requireAuth
+    deleteRole(id: String!): Role! @requireAuth
   }
 `

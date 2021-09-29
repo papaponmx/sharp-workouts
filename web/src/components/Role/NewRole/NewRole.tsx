@@ -17,6 +17,9 @@ const NewRole = () => {
       toast.success('Role created')
       navigate(routes.roles())
     },
+    onError: (error) => {
+      toast.error(error.message)
+    },
   })
 
   const onSave = (input) => {
