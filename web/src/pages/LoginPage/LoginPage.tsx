@@ -30,7 +30,7 @@ const LoginPage = () => {
 
       {isAuthenticated && (
         <div>
-          <h2>{currentUser.firstName}, you are logged in!</h2>
+          <h2>{currentUser?.firstName}, you are logged in!</h2>
         </div>
       )}
     </>
