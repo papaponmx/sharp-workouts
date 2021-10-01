@@ -27,7 +27,7 @@ const Routes = () => {
         <Route path="/users" page={UserUsersPage} name="users" />
       </Set>
 
-      <Set role={['customer', 'admin']} wrap={RolesLayout}>
+      <Set wrap={RolesLayout}>
         <Route path="/roles/new" page={RoleNewRolePage} name="newRole" />
         <Route path="/roles/{id}/edit" page={RoleEditRolePage} name="editRole" />
         <Route path="/roles/{id}" page={RoleRolePage} name="role" />

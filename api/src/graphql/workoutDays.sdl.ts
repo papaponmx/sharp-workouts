@@ -22,6 +22,7 @@ export const schema = gql`
   }
 
   type Mutation {
+    createMyWorkoutDay(input: CreateWorkoutDayInput!): WorkoutDay! @requireAuth
     createWorkoutDay(input: CreateWorkoutDayInput!): WorkoutDay! @requireAuth
     updateWorkoutDay(id: String!, input: UpdateWorkoutDayInput!): WorkoutDay!
       @requireAuth
