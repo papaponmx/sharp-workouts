@@ -20,20 +20,20 @@ const Routes = () => {
 
       <Route path="/login" page={LoginPage} name="login" />
       <Route notfound page={NotFoundPage} />
-
-      <Set role="customer" private unauthenticated="login" wrap={RolesLayout}>
-        <Route path="/roles/new" page={RoleNewRolePage} name="newRole" />
-        <Route path="/roles/{id}/edit" page={RoleEditRolePage} name="editRole" />
-        <Route path="/roles/{id}" page={RoleRolePage} name="role" />
-        <Route path="/roles" page={RoleRolesPage} name="roles" />
-      </Set>
-      <Set role="customer" private unauthenticated="login" wrap={UsersLayout}>
+      <Set wrap={UsersLayout}>
         <Route path="/users/new" page={UserNewUserPage} name="newUser" />
         <Route path="/users/{id:String}/edit" page={UserEditUserPage} name="editUser" />
         <Route path="/users/{id:String}" page={UserUserPage} name="user" />
         <Route path="/users" page={UserUsersPage} name="users" />
       </Set>
-      <Set role="customer" private unauthenticated="login" wrap={WorkoutDaysLayout}>
+
+      <Set role={['customer', 'admin']} wrap={RolesLayout}>
+        <Route path="/roles/new" page={RoleNewRolePage} name="newRole" />
+        <Route path="/roles/{id}/edit" page={RoleEditRolePage} name="editRole" />
+        <Route path="/roles/{id}" page={RoleRolePage} name="role" />
+        <Route path="/roles" page={RoleRolesPage} name="roles" />
+      </Set>
+      <Set role={['customer']} wrap={WorkoutDaysLayout}>
         <Route path="/workout-days/new" page={WorkoutDayNewWorkoutDayPage} name="newWorkoutDay" />
         <Route path="/workout-days/{id:Int}/edit" page={WorkoutDayEditWorkoutDayPage} name="editWorkoutDay" />
         <Route path="/workout-days/{id:Int}" page={WorkoutDayWorkoutDayPage} name="workoutDay" />
