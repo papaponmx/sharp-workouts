@@ -1,23 +1,23 @@
-import { Link, routes } from '@redwoodjs/router'
+import { useAuth } from '@redwoodjs/auth'
 import { MetaTags } from '@redwoodjs/web'
+import EditUserCell from 'src/components/User/EditUserCell'
 
 const SettingsPage = () => {
+  const { currentUser, isAuthenticated } = useAuth()
   return (
     <>
-      <MetaTags
-        title="Settings"
-        // description="Settings description"
-        /* you should un-comment description and add a unique description, 155 characters or less
-        You can look at this documentation for best practices : https://developers.google.com/search/docs/advanced/appearance/good-titles-snippets */
-      />
-      <h1>SettingsPage</h1>
-      <p>
-        Find me in <code>./web/src/pages/SettingsPage/SettingsPage.tsx</code>
-      </p>
-      <p>
-        My default route is named <code>settings</code>, link to me with `
-        <Link to={routes.settings()}>Settings</Link>`
-      </p>
+      <MetaTags title="Settings" />
+      <section className="bg-gray-800 text-gray-100 h-screen w-screen pt-6 pl-6 ">
+        <h1>SettingsPage</h1>
+        {/* This page should
+       *  - List user metadata
+       - Only display user's info
+       user -- Editable
+       Email
+       Register date
+      */}
+        {isAuthenticated && <EditUserCell id={currentUser?.id} />}{' '}
+      </section>
     </>
   )
 }

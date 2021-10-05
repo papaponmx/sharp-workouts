@@ -1,7 +1,6 @@
+import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-import { Link, routes } from '@redwoodjs/router'
-
 import { QUERY } from 'src/components/User/UsersCell'
 
 const DELETE_USER_MUTATION = gql`
@@ -64,7 +63,6 @@ const UsersList = ({ users }) => {
       <table className="rw-table">
         <thead>
           <tr>
-            <th>Id</th>
             <th>Email</th>
             <th>Name</th>
             <th>Register date</th>
@@ -74,7 +72,6 @@ const UsersList = ({ users }) => {
         <tbody>
           {users.map((user) => (
             <tr key={user.id}>
-              <td>{truncate(user.id)}</td>
               <td>{truncate(user.email)}</td>
               <td>{truncate(user.name)}</td>
               <td>{timeTag(user.registerDate)}</td>

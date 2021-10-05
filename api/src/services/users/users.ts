@@ -11,7 +11,7 @@ export const user = ({ id }: Prisma.UserWhereUniqueInput) => {
   const isAdmin: boolean = context?.currentUser?.roles.includes('admin')
   const isCurrentUser: boolean = id === context?.currentUser?.id
 
-  if (!isAdmin || !isCurrentUser) {
+  if (!isAdmin && !isCurrentUser) {
     throw new AuthenticationError("You don't have permission to do that.")
   }
 

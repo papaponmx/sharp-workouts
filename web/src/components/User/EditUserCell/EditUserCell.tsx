@@ -1,11 +1,9 @@
-import type { EditUserById } from 'types/graphql'
-
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+import { navigate, routes } from '@redwoodjs/router'
+import type { CellFailureProps, CellSuccessProps } from '@redwoodjs/web'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-import { navigate, routes } from '@redwoodjs/router'
-
 import UserForm from 'src/components/User/UserForm'
+import type { EditUserById } from 'types/graphql'
 
 export const QUERY = gql`
   query EditUserById($id: String!) {
@@ -52,7 +50,7 @@ export const Success = ({ user }: CellSuccessProps<EditUserById>) => {
   return (
     <div className="rw-segment">
       <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">Edit User {user.id}</h2>
+        <h2 className="rw-heading rw-heading-secondary">Edit your profile</h2>
       </header>
       <div className="rw-segment-main">
         <UserForm user={user} onSave={onSave} error={error} loading={loading} />

@@ -1,11 +1,11 @@
 import {
+  DatetimeLocalField,
+  FieldError,
   Form,
   FormError,
-  FieldError,
   Label,
-  TextField,
-  DatetimeLocalField,
   Submit,
+  TextField,
 } from '@redwoodjs/forms'
 
 const formatDatetime = (value) => {
@@ -37,6 +37,7 @@ const UserForm = (props) => {
           Email
         </Label>
         <TextField
+          disabled
           name="email"
           defaultValue={props.user?.email}
           className="rw-input"
@@ -69,6 +70,7 @@ const UserForm = (props) => {
           Register date
         </Label>
         <DatetimeLocalField
+          disabled
           name="registerDate"
           defaultValue={formatDatetime(props.user?.registerDate)}
           className="rw-input"
@@ -78,10 +80,7 @@ const UserForm = (props) => {
         <FieldError name="registerDate" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit
-            disabled={props.loading}
-            className="rw-button rw-button-blue"
-          >
+          <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
           </Submit>
         </div>
