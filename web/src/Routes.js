@@ -16,6 +16,7 @@ import HomePage from 'src/pages/HomePage'
 const Routes = () => {
   return (
     <Router>
+      <Route path="/settings" page={SettingsPage} name="settings" />
       <Route path="/" page={HomePage} name="home" />
 
       <Route path="/login" page={LoginPage} name="login" />
