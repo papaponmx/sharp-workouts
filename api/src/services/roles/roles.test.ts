@@ -1,4 +1,4 @@
-import { roles, role, createRole, updateRole, deleteRole } from './roles'
+import { createRole, deleteRole, role, roles, updateRole } from './roles'
 import type { StandardScenario } from './roles.scenarios'
 
 describe('roles', () => {
@@ -40,3 +40,9 @@ describe('roles', () => {
     expect(result).toEqual(null)
   })
 })
+function mockRedwoodDirective(
+  requireAuth: any,
+  arg1: { context: { currentUser: { id: string } } }
+) {
+  throw new Error('Function not implemented.')
+}

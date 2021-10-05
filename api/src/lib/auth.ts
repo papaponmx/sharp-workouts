@@ -44,11 +44,6 @@ export const getCurrentUser = async (
  * @returns {boolean} - If the currentUser is authenticated
  */
 export const isAuthenticated = (): boolean => {
-  console.log(
-    '🌰 isAuthenticated',
-    JSON.stringify(context.currentUser, null, 2)
-  )
-
   return !!context.currentUser
 }
 

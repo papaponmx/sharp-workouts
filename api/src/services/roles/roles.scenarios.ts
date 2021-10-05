@@ -11,7 +11,9 @@ export const standard = defineScenario<Prisma.RoleCreateArgs>({
     two: {
       data: {
         name: 'String',
-        User: { create: { email: 'String8080185', name: 'String' } },
+        User: {
+          create: { email: 'String8080185', name: 'String', userId: 'abc-123' },
+        },
       },
     },
   },
