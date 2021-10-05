@@ -1,5 +1,6 @@
 import type { Prisma } from '@prisma/client'
 import type { ResolverArgs } from '@redwoodjs/graphql-server'
+import { AuthenticationError } from '@redwoodjs/graphql-server'
 import { db } from 'src/lib/db'
 
 export const users = () => {
@@ -7,6 +8,13 @@ export const users = () => {
 }
 
 export const user = ({ id }: Prisma.UserWhereUniqueInput) => {
+  const isAdmin: boolean = context?.currentUser?.roles.includes('admin')
+  const isCurrentUser: boolean = id === context?.currentUser?.id
+
+  if (!isAdmin || !isCurrentUser) {
+    throw new AuthenticationError("You don't have permission to do that.")
+  }
+
   return db.user.findUnique({
     where: { id },
   })
