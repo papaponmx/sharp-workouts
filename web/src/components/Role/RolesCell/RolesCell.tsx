@@ -1,9 +1,7 @@
-import type { FindRoles } from 'types/graphql'
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
-
 import { Link, routes } from '@redwoodjs/router'
-
+import type { CellFailureProps, CellSuccessProps } from '@redwoodjs/web'
 import Roles from 'src/components/Role/Roles'
+import type { FindRoles } from 'types/graphql'
 
 export const QUERY = gql`
   query FindRoles {
@@ -23,10 +21,7 @@ export const Empty = () => {
   return (
     <div className="rw-text-center">
       {'No roles yet. '}
-      <Link
-        to={routes.newRole()}
-        className="rw-link"
-      >
+      <Link to={routes.newRole()} className="rw-link">
         {'Create one?'}
       </Link>
     </div>

@@ -1,7 +1,8 @@
+import { CurrentUser, useAuth } from '@redwoodjs/auth'
+import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-import { Link, routes } from '@redwoodjs/router'
-
+import { useEffect, useState } from 'react'
 import { QUERY } from 'src/components/Role/RolesCell'
 
 const DELETE_ROLE_MUTATION = gql`
@@ -39,6 +40,22 @@ const checkboxInputTag = (checked) => {
 }
 
 const RolesList = ({ roles }) => {
+  const { isAuthenticated, getCurrentUser } = useAuth()
+
+  const [currentUser, setCurrentUser] = useState<CurrentUser | undefined>()
+
+  const fetchUser = async () => {
+    const user = await getCurrentUser()
+    setCurrentUser(user)
+    console.log('🧐', user)
+  }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchUser()
+    }
+  }, [])
+
   const [deleteRole] = useMutation(DELETE_ROLE_MUTATION, {
     onCompleted: () => {
       toast.success('Role deleted')
@@ -64,50 +81,50 @@ const RolesList = ({ roles }) => {
       <table className="rw-table">
         <thead>
           <tr>
-            <th>Id</th>
             <th>Name</th>
             <th>Created at</th>
             <th>Updated at</th>
-            <th>User id</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          {roles.map((role) => (
-            <tr key={role.id}>
-              <td>{truncate(role.id)}</td>
-              <td>{truncate(role.name)}</td>
-              <td>{timeTag(role.createdAt)}</td>
-              <td>{timeTag(role.updatedAt)}</td>
-              <td>{truncate(role.userId)}</td>
-              <td>
-                <nav className="rw-table-actions">
-                  <Link
-                    to={routes.role({ id: role.id })}
-                    title={'Show role ' + role.id + ' detail'}
-                    className="rw-button rw-button-small"
-                  >
-                    Show
-                  </Link>
-                  <Link
-                    to={routes.editRole({ id: role.id })}
-                    title={'Edit role ' + role.id}
-                    className="rw-button rw-button-small rw-button-blue"
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    type="button"
-                    title={'Delete role ' + role.id}
-                    className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(role.id)}
-                  >
-                    Delete
-                  </button>
-                </nav>
-              </td>
-            </tr>
-          ))}
+          {roles
+            .filter(
+              (role) => currentUser && currentUser?.roles.includes(role.name)
+            )
+            .map((role) => (
+              <tr key={role.id}>
+                <td>{truncate(role.name)}</td>
+                <td>{timeTag(role.createdAt)}</td>
+                <td>{timeTag(role.updatedAt)}</td>
+                <td>
+                  <nav className="rw-table-actions">
+                    <Link
+                      to={routes.role({ id: role.id })}
+                      title={'Show role ' + role.id + ' detail'}
+                      className="rw-button rw-button-small"
+                    >
+                      Show
+                    </Link>
+                    <Link
+                      to={routes.editRole({ id: role.id })}
+                      title={'Edit role ' + role.id}
+                      className="rw-button rw-button-small rw-button-blue"
+                    >
+                      Edit
+                    </Link>
+                    <button
+                      type="button"
+                      title={'Delete role ' + role.id}
+                      className="rw-button rw-button-small rw-button-red"
+                      onClick={() => onDeleteClick(role.id)}
+                    >
+                      Delete
+                    </button>
+                  </nav>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
