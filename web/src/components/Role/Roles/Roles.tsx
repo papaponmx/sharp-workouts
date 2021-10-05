@@ -47,7 +47,6 @@ const RolesList = ({ roles }) => {
   const fetchUser = async () => {
     const user = await getCurrentUser()
     setCurrentUser(user)
-    console.log('🧐', user)
   }
 
   useEffect(() => {

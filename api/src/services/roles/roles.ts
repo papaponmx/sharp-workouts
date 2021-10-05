@@ -3,7 +3,7 @@ import type { ResolverArgs } from '@redwoodjs/graphql-server'
 import { db } from 'src/lib/db'
 
 export const roles = () => {
-  return db.role.findMany()
+  return db.role.findMany({ where: { userId: context.currentUser.id } }) ?? []
 }
 
 export const role = ({ id }: Prisma.RoleWhereUniqueInput) => {
