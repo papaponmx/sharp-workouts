@@ -20,18 +20,22 @@ const UserForm = (props) => {
   }
 
   return (
-    <div className="rw-form-wrapper">
-      <Form onSubmit={onSubmit} error={props.error}>
+    <div className="">
+      <Form
+        className="text-gray-100 grid grid-cols-1 gap-2 p-4"
+        onSubmit={onSubmit}
+        error={props.error}
+      >
         <FormError
           error={props.error}
-          wrapperClassName="rw-form-error-wrapper"
-          titleClassName="rw-form-error-title"
-          listClassName="rw-form-error-list"
+          wrapperClassName="p-4 bg-gray-200 text-red-500 border-2 border-red-500 rounded my-4 mx-0 "
+          titleClassName="my-0 font-semibold"
+          listClassName="mt-2 list-disc	list-inside"
         />
 
         <Label
           name="email"
-          className="rw-label"
+          className="text-gray-100"
           errorClassName="rw-label rw-label-error"
         >
           Email
@@ -40,14 +44,14 @@ const UserForm = (props) => {
           disabled
           name="email"
           defaultValue={props.user?.email}
-          className="rw-input"
+          className="text-gray-100 p-2 rounded"
           errorClassName="rw-input rw-input-error"
         />
         <FieldError name="email" className="rw-field-error" />
 
         <Label
           name="name"
-          className="rw-label"
+          className="text-gray-100"
           errorClassName="rw-label rw-label-error"
         >
           Name
@@ -55,7 +59,7 @@ const UserForm = (props) => {
         <TextField
           name="name"
           defaultValue={props.user?.name}
-          className="rw-input"
+          className="text-gray-100 p-2 rounded bg-gray-900"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
@@ -63,7 +67,7 @@ const UserForm = (props) => {
 
         <Label
           name="registerDate"
-          className="rw-label"
+          className="text-gray-100"
           errorClassName="rw-label rw-label-error"
         >
           Register date
@@ -72,7 +76,7 @@ const UserForm = (props) => {
           disabled
           name="registerDate"
           defaultValue={formatDatetime(props.user?.registerDate)}
-          className="rw-input"
+          className="text-gray-100 p-2 rounded"
           errorClassName="rw-input rw-input-error"
         />
         <FieldError name="registerDate" className="rw-field-error" />

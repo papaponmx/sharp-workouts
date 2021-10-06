@@ -48,13 +48,8 @@ export const Success = ({ user }: CellSuccessProps<EditUserById>) => {
   }
 
   return (
-    <div className="rw-segment">
-      <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">Edit your profile</h2>
-      </header>
-      <div className="rw-segment-main">
-        <UserForm user={user} onSave={onSave} error={error} loading={loading} />
-      </div>
+    <div className="bg-gray-800 mt-4">
+      <UserForm user={user} onSave={onSave} error={error} loading={loading} />
     </div>
   )
 }
