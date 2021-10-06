@@ -42,7 +42,6 @@ const UserForm = (props) => {
           defaultValue={props.user?.email}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
         />
         <FieldError name="email" className="rw-field-error" />
 
@@ -75,7 +74,6 @@ const UserForm = (props) => {
           defaultValue={formatDatetime(props.user?.registerDate)}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
         />
         <FieldError name="registerDate" className="rw-field-error" />
 

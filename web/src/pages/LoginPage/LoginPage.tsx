@@ -30,8 +30,6 @@ const LoginPage = () => {
           </div>
         )}
 
-        {/* // TODO: Add settings page */}
-
         <section className="mt-8">
           <Link
             to="/settings"
