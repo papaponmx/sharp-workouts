@@ -10,6 +10,7 @@ export const QUERY = gql`
     workoutDays {
       id
       didWorkout
+      date
       userId
     }
   }

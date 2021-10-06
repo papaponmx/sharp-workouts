@@ -4,6 +4,7 @@ import {
   FieldError,
   Label,
   CheckboxField,
+  DatetimeLocalField,
   TextField,
   Submit,
 } from '@redwoodjs/forms'
@@ -43,6 +44,22 @@ const WorkoutDayForm = (props) => {
           errorClassName="rw-input rw-input-error"
         />
         <FieldError name="didWorkout" className="rw-field-error" />
+
+        <Label
+          name="date"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Date
+        </Label>
+        <DatetimeLocalField
+          name="date"
+          defaultValue={formatDatetime(props.workoutDay?.date)}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+        <FieldError name="date" className="rw-field-error" />
 
         <Label
           name="userId"

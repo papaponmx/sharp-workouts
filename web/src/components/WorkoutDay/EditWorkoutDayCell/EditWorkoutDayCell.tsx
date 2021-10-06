@@ -12,6 +12,7 @@ export const QUERY = gql`
     workoutDay: workoutDay(id: $id) {
       id
       didWorkout
+      date
       userId
     }
   }
@@ -21,6 +22,7 @@ const UPDATE_WORKOUT_DAY_MUTATION = gql`
     updateWorkoutDay(id: $id, input: $input) {
       id
       didWorkout
+      date
       userId
     }
   }

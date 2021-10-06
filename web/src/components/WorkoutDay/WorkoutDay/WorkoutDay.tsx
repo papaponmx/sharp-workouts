@@ -62,6 +62,9 @@ const WorkoutDay = ({ workoutDay }) => {
               <th>Did workout</th>
               <td>{checkboxInputTag(workoutDay.didWorkout)}</td>
             </tr><tr>
+              <th>Date</th>
+              <td>{timeTag(workoutDay.date)}</td>
+            </tr><tr>
               <th>User id</th>
               <td>{workoutDay.userId}</td>
             </tr>

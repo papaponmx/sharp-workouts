@@ -8,6 +8,7 @@ export const QUERY = gql`
     workoutDay: workoutDay(id: $id) {
       id
       didWorkout
+      date
       userId
     }
   }

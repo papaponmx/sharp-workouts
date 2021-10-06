@@ -66,6 +66,7 @@ const WorkoutDaysList = ({ workoutDays }) => {
           <tr>
             <th>Id</th>
             <th>Did workout</th>
+            <th>Date</th>
             <th>User id</th>
             <th>&nbsp;</th>
           </tr>
@@ -75,6 +76,7 @@ const WorkoutDaysList = ({ workoutDays }) => {
             <tr key={workoutDay.id}>
               <td>{truncate(workoutDay.id)}</td>
               <td>{checkboxInputTag(workoutDay.didWorkout)}</td>
+              <td>{timeTag(workoutDay.date)}</td>
               <td>{truncate(workoutDay.userId)}</td>
               <td>
                 <nav className="rw-table-actions">

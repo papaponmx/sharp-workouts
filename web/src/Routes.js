@@ -8,6 +8,7 @@
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
 import { Private, Route, Router, Set } from '@redwoodjs/router'
+import WorkoutDaysLayout from 'src/layouts/WorkoutDaysLayout'
 import RolesLayout from 'src/layouts/RolesLayout'
 import UsersLayout from 'src/layouts/UsersLayout'
 import WorkoutDaysLayout from 'src/layouts/WorkoutDaysLayout'
@@ -16,6 +17,10 @@ import HomePage from 'src/pages/HomePage'
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={WorkoutDaysLayout}>
+        <Route path="/workout-days/{id}/edit" page={WorkoutDayEditWorkoutDayPage} name="editWorkoutDay" />
+        <Route path="/workout-days/{id}" page={WorkoutDayWorkoutDayPage} name="workoutDay" />
+      </Set>
       <Private unauthenticated="login">
         <Route path="/settings" page={SettingsPage} name="settings" />
       </Private>
