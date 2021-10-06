@@ -3,7 +3,13 @@ import type { ResolverArgs } from '@redwoodjs/graphql-server'
 import { AuthenticationError } from '@redwoodjs/graphql-server'
 import { db } from 'src/lib/db'
 
+import { hasRole } from '../../lib/auth'
+
 export const users = () => {
+  if (!hasRole({ roles: ['admin'] })) {
+    throw new AuthenticationError("You don't have permission to do that.")
+  }
+
   return db.user.findMany()
 }
 
