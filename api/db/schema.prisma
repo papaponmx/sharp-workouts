@@ -27,10 +27,11 @@ model Role {
 }
 
 model WorkoutDay {
-  id         String  @id @unique @default(uuid())
+  id         String   @id @unique @default(uuid())
   didWorkout Boolean
-  user       User?   @relation("WorkoutDays", fields: [userId], references: [id])
-  userId     String? @unique
+  date       DateTime @default(now())
+  user       User?    @relation("WorkoutDays", fields: [userId], references: [id])
+  userId     String?  @unique
 }
 
 model RW_DataMigration {
