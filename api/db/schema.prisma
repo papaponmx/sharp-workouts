@@ -1,31 +1,41 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
+}
+
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = "native"
-}
-
-// Define your own datamodels here and run `yarn redwood prisma migrate dev`
 model User {
-  id             Int             @id @default(autoincrement())
-  email          String          @unique
+  id             String       @id @unique @default(uuid())
+  email          String       @unique
   name           String
-  registerDate   DateTime        @default(now())
-  workoutHistory WorkoutHistory? @relation("WorkoutHistory")
+  registerDate   DateTime     @default(now())
+  roles          Role[]       @relation("UserRoles")
+  workoutHistory WorkoutDay[] @relation("WorkoutDays")
 }
 
-model WorkoutHistory {
-  id          Int          @id @default(autoincrement())
-  user        User         @relation(name: "WorkoutHistory", fields: [userId], references: [id])
-  userId      Int
-  workoutDays WorkoutDay[] @relation("WorkoutDays")
+model Role {
+  id        String   @id @unique @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  User      User     @relation("UserRoles", fields: [userId], references: [id])
+  userId    String
 }
 
 model WorkoutDay {
-  id               Int             @id @default(autoincrement())
-  WorkoutHistory   WorkoutHistory? @relation("WorkoutDays", fields: [workoutHistoryId], references: [id])
-  workoutHistoryId Int?
+  id         String  @id @unique @default(uuid())
+  didWorkout Boolean
+  user       User?   @relation("WorkoutDays", fields: [userId], references: [id])
+  userId     String? @unique
+}
+
+model RW_DataMigration {
+  version    String   @id
+  name       String
+  startedAt  DateTime
+  finishedAt DateTime
 }
