@@ -15,5 +15,5 @@
 [browser]
   open = true
 [experimental]
-  esbuild = false
+  esbuild = true
   useEnvelop = false
