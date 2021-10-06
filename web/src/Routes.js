@@ -8,7 +8,6 @@
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
 import { Private, Route, Router, Set } from '@redwoodjs/router'
-import WorkoutDaysLayout from 'src/layouts/WorkoutDaysLayout'
 import RolesLayout from 'src/layouts/RolesLayout'
 import UsersLayout from 'src/layouts/UsersLayout'
 import WorkoutDaysLayout from 'src/layouts/WorkoutDaysLayout'
