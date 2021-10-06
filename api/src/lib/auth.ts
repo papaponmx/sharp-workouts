@@ -1,4 +1,6 @@
-import { AuthenticationError, ForbiddenError, parseJWT } from '@redwoodjs/api'
+import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server'
+import { context } from '@redwoodjs/graphql-server'
+import { db } from 'src/lib/db'
 
 /**
  * getCurrentUser returns the user information together with
@@ -17,7 +19,23 @@ export const getCurrentUser = async (
   { _token, _type },
   { _event, _context }
 ) => {
-  return { ...decoded, roles: parseJWT({ decoded }).roles }
+  if (!decoded) {
+    return null
+  }
+
+  const email = decoded.emailAddresses[0].emailAddress
+  const dbUser = await db.user.findUnique({
+    where: { email: email },
+  })
+  const dbRoles = await db.role.findMany({
+    where: { userId: dbUser.id },
+  })
+
+  return {
+    ...decoded,
+    id: dbUser?.id,
+    roles: Array.isArray(dbRoles) ? dbRoles.map((role) => role.name) : [],
+  }
 }
 
 /**
@@ -25,7 +43,7 @@ export const getCurrentUser = async (
  *
  * @returns {boolean} - If the currentUser is authenticated
  */
-export const isAuthenticated = () => {
+export const isAuthenticated = (): boolean => {
   return !!context.currentUser
 }
 
@@ -44,7 +62,7 @@ export const hasRole = ({ roles }) => {
 
   if (roles) {
     if (Array.isArray(roles)) {
-      return context.currentUser.roles?.some((r) => roles.includes(r))
+      return context.currentUser.roles?.some((r: string) => roles.includes(r))
     }
 
     if (typeof roles === 'string') {
@@ -56,6 +74,10 @@ export const hasRole = ({ roles }) => {
   }
 
   return true
+}
+
+interface rolesInput {
+  roles?: string[] | string
 }
 
 /**
@@ -72,12 +94,24 @@ export const hasRole = ({ roles }) => {
  *
  * @see https://github.com/redwoodjs/redwood/tree/main/packages/auth for examples
  */
-export const requireAuth = ({ roles } = {}) => {
+export const requireAuth = (
+  { roles }: rolesInput = {}
+  // ownsResource = false
+): void => {
   if (!isAuthenticated()) {
     throw new AuthenticationError("You don't have permission to do that.")
   }
 
   if (!hasRole({ roles })) {
+    throw new ForbiddenError("You don't have access to do that.")
+  }
+}
+
+/**
+ * Use verifyOwnership to validate that the current user
+ */
+export const verifyOwnership = (id: string) => {
+  if (context.currentUser?.id !== id) {
     throw new ForbiddenError("You don't have access to do that.")
   }
 }
