@@ -3,7 +3,11 @@ module.exports = {
   purge: ['src/**/*.{js,jsx,ts,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'navbar-gradient': 'linear-gradient(135deg, #0368FF 0%, #FF3E95 100%)',
+      },
+    },
   },
   plugins: [],
 }

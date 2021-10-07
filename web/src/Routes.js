@@ -13,6 +13,8 @@ import UsersLayout from 'src/layouts/UsersLayout'
 import WorkoutDaysLayout from 'src/layouts/WorkoutDaysLayout'
 import HomePage from 'src/pages/HomePage'
 
+import DashboardLayout from './layouts/DashboardLayout/DashboardLayout'
+
 const Routes = () => {
   return (
     <Router>
@@ -23,7 +25,9 @@ const Routes = () => {
       <Private unauthenticated="login">
         <Route path="/settings" page={SettingsPage} name="settings" />
       </Private>
-      <Route path="/" page={HomePage} name="home" />
+      <Set wrap={DashboardLayout}>
+        <Route path="/" page={HomePage} name="home" />
+      </Set>
 
       <Route path="/login" page={LoginPage} name="login" />
       <Route notfound page={NotFoundPage} />
