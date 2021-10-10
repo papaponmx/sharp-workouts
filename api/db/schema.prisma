@@ -15,6 +15,15 @@ model User {
   registerDate   DateTime     @default(now())
   roles          Role[]       @relation("UserRoles")
   workoutHistory WorkoutDay[] @relation("WorkoutDays")
+  settings       Setting?     @relation("UserSettings")
+}
+
+model Setting {
+  id       String   @id @unique @default(uuid())
+  darkMode Boolean?
+  userId   String   @unique
+  user     User     @relation("UserSettings", fields: [userId], references: [id])
+
 }
 
 model Role {
