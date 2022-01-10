@@ -2,6 +2,7 @@ import './scaffold.css'
 import './index.css'
 
 import { ClerkLoaded, ClerkProvider, useClerk } from '@clerk/clerk-react'
+import { LoadedClerk } from '@clerk/clerk-react/dist/types'
 import { AuthProvider } from '@redwoodjs/auth'
 import { FatalErrorBoundary, RedwoodProvider } from '@redwoodjs/web'
 import { RedwoodApolloProvider } from '@redwoodjs/web/apollo'
@@ -12,7 +13,7 @@ import Routes from 'src/Routes'
 // Also, you need to add two env variables: CLERK_FRONTEND_API_URL for web and
 // CLERK_API_KEY for api, with the frontend api host and api key, respectively,
 // both from your Clerk.dev dashboard.
-let clerk
+let clerk: LoadedClerk
 const ClerkAuthConsumer = ({ children }) => {
   clerk = useClerk()
   return React.cloneElement(children, { client: clerk })

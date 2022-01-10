@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^1.21.2",
-    "@redwoodjs/auth": "^0.37.0-rc.79",
-    "@redwoodjs/forms": "^0.37.0-rc.79",
-    "@redwoodjs/router": "^0.37.0-rc.79",
-    "@redwoodjs/web": "^0.37.0-rc.79",
+    "@redwoodjs/auth": "^1.0.0-rc.4",
+    "@redwoodjs/forms": "^1.0.0-rc.4",
+    "@redwoodjs/router": "^1.0.0-rc.4",
+    "@redwoodjs/web": "^1.0.0-rc.4",
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2"
