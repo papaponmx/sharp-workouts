@@ -7,7 +7,7 @@ const SettingsPage = () => {
   return (
     <>
       <MetaTags title="Settings" />
-      <section className="bg-gray-900 text-gray-100  h-screen w-screen pt-6 pl-6 ">
+
         <h1>SettingsPage</h1>
         {/* This page should
        *  - List user metadata
@@ -17,7 +17,6 @@ const SettingsPage = () => {
        Register date
       */}
         {isAuthenticated && <EditUserCell id={currentUser?.id} />}{' '}
-      </section>
     </>
   )
 }

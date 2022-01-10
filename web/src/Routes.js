@@ -19,24 +19,23 @@ import DashboardLayout from './layouts/DashboardLayout/DashboardLayout'
 const Routes = () => {
   return (
     <Router>
-      <Set wrap={SettingsLayout}>
-        <Route path="/settings/new" page={SettingNewSettingPage} name="newSetting" />
-        <Route path="/settings/{id}/edit" page={SettingEditSettingPage} name="editSetting" />
-        <Route path="/settings/{id}" page={SettingSettingPage} name="setting" />
-        <Route path="/settings" page={SettingSettingsPage} name="settings" />
-      </Set>
       <Set wrap={WorkoutDaysLayout}>
         <Route path="/workout-days/{id}/edit" page={WorkoutDayEditWorkoutDayPage} name="editWorkoutDay" />
         <Route path="/workout-days/{id}" page={WorkoutDayWorkoutDayPage} name="workoutDay" />
       </Set>
       <Private unauthenticated="login">
-        <Route path="/settings" page={SettingsPage} name="settings" />
       </Private>
       <Set wrap={DashboardLayout}>
+        <Route path="/settings" page={SettingsPage} name="settings" />
         <Route path="/" page={HomePage} name="home" />
+        <Route path="/login" page={LoginPage} name="login" />
+        <Route path="/settings" page={SettingSettingsPage} name="settings" />
+                <Route path="/settings/new" page={SettingNewSettingPage} name="newSetting" />
+        <Route path="/settings/{id}/edit" page={SettingEditSettingPage} name="editSetting" />
+        <Route path="/settings/{id}" page={SettingSettingPage} name="setting" />
+
       </Set>
 
-      <Route path="/login" page={LoginPage} name="login" />
       <Route notfound page={NotFoundPage} />
       <Set wrap={UsersLayout}>
         <Route path="/users/new" page={UserNewUserPage} name="newUser" />
