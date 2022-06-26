@@ -4,6 +4,6 @@
   "private": true,
   "dependencies": {
     "@clerk/clerk-sdk-node": "^0.5.2",
-    "@redwoodjs/api": "^1.0.0-rc.4"
+    "@redwoodjs/api": "^2.0.0"
   }
 }
