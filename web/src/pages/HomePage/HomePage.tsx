@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import LoginForm from 'src/components/LoginForm/LoginForm'
 
 const HomePage = () => {
-  const { isAuthenticated, getCurrentUser } = useAuth()
+  const { isAuthenticated, getCurrentUser, loading } = useAuth()
   const [currentUser, setCurrentUser,  ] = useState<any>()
 
   const fetchUser = async () => {
@@ -34,6 +34,7 @@ const HomePage = () => {
       <div className="flex items-center justify-center h-screen">
 
     {
+      loading  ? 'Loading...' :
       (currentUser && isAuthenticated) ?
       <section className="bg-indigo-800 text-white font-bold rounded-lg border shadow-lg p-10">
       <h2>Welcome</h2>
