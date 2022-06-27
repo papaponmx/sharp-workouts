@@ -1,59 +1,48 @@
 import { useAuth } from '@redwoodjs/auth'
 import { MetaTags } from '@redwoodjs/web'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import LoginForm from 'src/components/LoginForm/LoginForm'
 
 const HomePage = () => {
-  const [email, setEmail] = useState('')
+  const { isAuthenticated, getCurrentUser } = useAuth()
+  const [currentUser, setCurrentUser,  ] = useState<any>()
 
-  const { logIn, logOut, signUp, isAuthenticated } = useAuth()
+  const fetchUser = async () => {
+    const user = await getCurrentUser()
+    console.log('user', user.meta);
 
-  const onSubmit = async () => {
-    if (!isAuthenticated && email.length) {
-      await logIn({ email, showUI: true });
-    } else {
-      await logOut();
+    setCurrentUser(user)
+  }
+
+  useEffect(() => {
+    if(isAuthenticated){
+      fetchUser()
     }
-  };
+  }, [
+    isAuthenticated
+  ])
+
   return (
     <>
       <MetaTags title="Homepage" description="Homepage page" />
 
-      <h1>HomePage</h1>
+      <div className="flex items-center justify-center h-screen">
 
-      <p>
-         { isAuthenticated && 'You are authenticated'}
-      </p>
-      {!isAuthenticated &&
+    {
+      (currentUser && isAuthenticated) ?
+      <section className="bg-indigo-800 text-white font-bold rounded-lg border shadow-lg p-10">
+      <h2>
+        { 'You are authenticated '}
+        {  currentUser.meta.email}
+      </h2>
 
-      <form action="#">
-      <input
-        type="email"
-        placeholder="email address"
-        required
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <button
-        disabled={!email.length && !isAuthenticated}
-        onClick={onSubmit}
-      >
-        {isAuthenticated ? 'Log Out' : 'Log In'}
-      </button>
+      </section>
+      :
+        <LoginForm />
 
-      {!isAuthenticated && (
-        <button
-          disabled={!email.length && !isAuthenticated}
-          onClick={async () => {
-            if (!isAuthenticated && email.length) {
-              await signUp({ email, showUI: true })
-            }
-          }}
-        >
-          Sign Up
-        </button>
-      )}
-    </form>
+      }
+      </div>
 
-}
 
     </>
   )

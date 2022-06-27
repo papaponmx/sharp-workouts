@@ -14,7 +14,7 @@ import HomePage from 'src/pages/HomePage'
 const Routes = () => {
   return (
   <Router useAuth={useAuth}>
-      <Route path="/homepage" page={HomePage} name="homepage" />
+      <Route path="/" page={HomePage} name="homepage" />
       <Route notfound page={NotFoundPage} />
     </Router>
   )
