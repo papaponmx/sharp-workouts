@@ -1,4 +1,5 @@
 import { useAuth } from '@redwoodjs/auth'
+import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import { useEffect, useState } from 'react'
 import LoginForm from 'src/components/LoginForm/LoginForm'
@@ -44,7 +45,7 @@ const HomePage = () => {
 
       <ul>
         <li>
-          <a href="">My account</a>
+          <Link to={routes.account()}>My Account</Link>
         </li>
       </ul>
       </section>
