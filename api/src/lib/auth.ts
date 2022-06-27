@@ -1,5 +1,6 @@
 import { Magic } from '@magic-sdk/admin'
 import { AuthenticationError } from '@redwoodjs/graphql-server'
+import { db } from 'src/lib/db'
 
 /**
  * getCurrentUser returns the user information from the decoded JWT
@@ -26,9 +27,10 @@ export const getCurrentUser = async (
 ) => {
   const mAdmin = new Magic(process.env.MAGIC_SECRET_API_KEY)
   const { proof, claim } = decoded
-  const meta = await mAdmin.users.getMetadataByToken(token)
+  const { issuer } = await mAdmin.users.getMetadataByToken(token)
+  console.log('TEST ', issuer)
   // https://magic.link/docs/introduction/decentralized-id#what-is-a-did-token
-  return { proof, claim, meta }
+  return await db.user.findUnique({ where: { issuer } })
 }
 
 /**
